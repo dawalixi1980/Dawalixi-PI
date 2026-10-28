@@ -1,0 +1,33 @@
+{
+  "name": "pi-zh-cn",
+  "version": "0.1.0",
+  "description": "pi 界面中文对照包：把 /settings 设置项、斜杠命令、快捷键和常用术语翻成中文（pi 本身无 i18n）",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "i18n",
+    "chinese",
+    "zh-cn",
+    "localization"
+  ],
+  "license": "MIT",
+  "author": "dawalixi1980",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dawalixi1980/Dawalixi-PI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dawalixi1980/Dawalixi-PI/issues"
+  },
+  "files": [
+    "extensions",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/pi-zh-cn.ts"
+    ]
+  }
+}
