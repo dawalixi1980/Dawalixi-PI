@@ -44,6 +44,55 @@ pi remove git:github.com/dawalixi1980/Dawalixi-PI
 
 启动时页脚会显示 `中文对照: /zh` 作为提示。不想要就设置环境变量 `PI_ZH_CN_HINT=0`。
 
+## 数学公式渲染
+
+这个包还附带一个终端数学公式扩展（第三方能力桥接）：
+
+- `$$…$$` / `\[…\]` 显示公式 → MathJax 排版后以 SIXEL 图片渲染
+- `$…$` 行内公式 → pi 内置 Unicode 排版
+- 代码块、`inline code`、转义 `\$` 不会被处理
+
+命令：
+
+| 命令 | 作用 |
+|---|---|
+| `/sixel-math on` / `off` / `toggle` | 开关公式图片 |
+| `/sixel-math status` | 查看状态、配色、网格、缓存 |
+| `/sixel-math demo` | 渲染内置示例公式 |
+| `/sixel-math clear` | 清空图片缓存 |
+| `/sixel-math bg #1e1e1e` | 指定用于字形边缘混合的背景色 |
+
+### 环境要求
+
+| 项目 | 要求 |
+|---|---|
+| 终端 | Windows Terminal 1.22+（需支持 SIXEL） |
+| Node.js | 22.19+ |
+| pi | `tuiMode` 必须是 `"regular"`，fullscreen（alt screen）下扩展自动关闭 |
+
+### 配色配置
+
+公式颜色默认跟随 pi 主题的正文色。若主题与你终端背景不匹配（例如深色终端 + `light` 主题），公式会因颜色过暗而看不清，此时在 `~/.pi/agent/sixel-math.json` 里显式指定：
+
+```json
+{
+  "foreground": "#ffffff",
+  "background": "transparent",
+  "exPx": 11,
+  "maxRows": 16,
+  "maxColors": 32
+}
+```
+
+`exPx` 控制字号（默认 `cellHeightPx / 2.5`，即 8），调到 11～14 会明显变大。
+
+### 来源与许可
+
+数学排版能力来自第三方 MIT 包 [`pi-sixel-math`](https://github.com/GuChongAn/pi-sixel-math)（作者 GuChongAn）。本仓库只包含一个转发用的桥接文件 `extensions/pi-sixel-math.ts`，不复制其源码，版权与许可归原作者。
+
+> 注意：若你已全局安装 `npm:pi-sixel-math`，请先 `pi remove npm:pi-sixel-math`，否则两个扩展会同时渲染同一公式。
+
+
 ## 文档
 
 | 文件 | 内容 |
